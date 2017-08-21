@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% load static %}
+{% load humanize %}
+
+{% block title %}
+	your home
+{% endblock %}
+
+{% block content %}
+	<div class="container">
+		<div class="row text-center">
+			<div class="col-md-12">
+				<h2>Welcome, {{ request.user.username }}</h2>
+				<p>Share the below URL to get feedbacks</p>
+				<h3><a href="{% url "feedbacks:send_message" request.user.username %}">http://localhost:8000/message/{{ request.user.username }}</a></h3>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-3"></div>
+			<div class="col-md-3">
+				<h3>Received messages:</h3>
+				{% if received_messages %}
+					{% for message in received_messages %}
+						<h3>{{ message.body|linebreaks }}</h3>
+						{% if message.reveal_identity %}
+							<h4>written by : {{ message.written_by }}</h4>
+						{% else %}
+							<h4>written by : Anonymous</h4>
+						{% endif %}
+						<small>{{ message.timestamp|naturaltime }}</small>
+						<hr>
+					{% endfor %}
+				{% else %}
+					<h3>No messages yet.</h3>
+				{% endif %}
+			</div>
+			<div class="col-md-3">
+				<h3>Messages sent:</h3>
+				{% if sent_messages %}
+					{% for message in sent_messages %}
+						<h4>written to : {{ message.write_to }}</h4>
+						<h3>{{ message.body|linebreaks }}</h3>
+						<small>{{ message.timestamp|naturaltime }}</small><hr>
+					{% endfor %}
+				{% else %}
+					<h3>you have not sent any messages yet.</h3>
+				{% endif %}
+			</div>
+			<div class="col-md-3"></div>
+		</div>
+	</div>
+{% endblock %}
