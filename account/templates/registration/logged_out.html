@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block title %}
+	logged out
+{% endblock %}
+
+{% block content %}
+	<div class="container">
+		<div class="row">
+			<div class="col-md-3"></div>
+			<div class="col-md-6">
+				<h3>Thank you for spending some quality time with us. You can login again <a href="{% url "account:login" %}">here</a>.</h3>
+			</div>
+			<div class="col-md-3"></div>
+		</div>
+	</div>
+{% endblock %}

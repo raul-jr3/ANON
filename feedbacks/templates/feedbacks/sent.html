@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% load static %}
+{% load humanize %}
+
+{% block title %}
+	{{ user.username }}-sent
+{% endblock %}
+
+{% block content %}
+	<div class="container">
+		{% if request.user == user %}
+		<div class="row text-center">
+			<div class="col-md-12">
+				<h3>{{ user.username }}, you have sent {{ sent.count }} message{{ sent.count|pluralize }} so far</h3>
+			</div>
+		</div>
+		<div class="row text-center">
+			<div class="col-md-12">
+				<h3>All messages received:</h3>
+				{% for sen in sent %}
+					<div class="jumbotron">
+						<h3>{{ sen.body|linebreaks }}</h3>
+						{% if sen.reveal_identity %}
+							<h4>written by : {{ sen.written_by }}</h4>
+						{% else %}
+							<h4>written by : Anonymous</h4>
+						{% endif %}
+						<small>{{ sen.timestamp|naturaltime }}</small>
+					</div>
+				{% endfor %}
+			</div>
+		</div>
+		{% else %}
+			<div class="row text-center">
+				<div class="col-md-12">
+					<h3>Hey, you are not {{ user.username }} :P</h3>
+					<h3>You are {{ request.user.username }}</h3>
+					<h3>You are not authorized to see this page.</h3>
+				</div>
+			</div>
+		{% endif %}
+	</div>
+{% endblock %}
