@@ -11,12 +11,11 @@
 		{% if request.user == user %}
 		<div class="row text-center">
 			<div class="col-md-12">
-				<h3>{{ user.username }} you have received {{ received.count }} message{{ received.count|pluralize }} so far</h3>
+				<h3>{{ user.username }}, you have received {{ received.count }} message{{ received.count|pluralize }} so far</h3>
 			</div>
 		</div>
 		<div class="row text-center">
 			<div class="col-md-12">
-				<h3>All messages received:</h3>
 				{% for rec in received %}
 					<div class="jumbotron">
 						<h3>{{ rec.body|linebreaks }}</h3>

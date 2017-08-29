@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'django.contrib.humanize',
     'feedbacks',
     'crispy_forms',
+    'captcha',
 ]
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
@@ -138,3 +139,9 @@ LOGIN_URL = reverse_lazy('account:login')
 LOGOUT_URL = reverse_lazy('account:logout')
 
 LOGIN_REDIRECT_URL = reverse_lazy('feedbacks:private_page')
+
+RECAPTCHA_PUBLIC_KEY = '6Le64C0UAAAAAHKPtblYwRYZ7xxhnXHAVwUgRnyu'
+
+RECAPTCHA_PRIVATE_KEY = '6Le64C0UAAAAAINYJSRgfQbHlI9wJDjds6BNJlRm'
+
+NOCAPTCHA = True

@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% load humanize %}
+
+{% block title %}
+	{{ user.username }}-settings
+{% endblock %}
+
+{% block content %}
+	<div class="container">
+		{% if request.user.username == user.username %}
+			<div class="row text-center">
+				<div class="col-md-12">
+					<h3>account - "{{ user.username }}"</h3><hr>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-2"></div>
+				<div class="col-md-4">
+					{% if user.profile.display_picture %}
+						<img src="{{ user.profile.display_picture.url }}" class="img-responsive img-rounded"><br>
+					{% else %}
+						<img src="{% static "user.png" %}" class="img-responsive img-rounded"><br>
+					{% endif %}
+					<h3>{{ user.get_full_name }}</h3>
+					<p>username : {{ user.username }}</p>
+					<p>Last login : {{ user.last_login|naturaltime }}</p>
+					<p>Date joined : {{ user.date_joined|naturaltime }}</p>
+					<p><b><a href="{% url "account:password_change" %}">Change password</a></b></p>
+				</div>
+				<div class="col-md-4">
+					<form action="." method="POST" enctype="multipart/form-data">
+						{% csrf_token %}
+						{{ form|crispy }}
+						{{ user_form|crispy }}
+						<button class="btn btn-primary btn-block">update</button>
+					</form>
+				</div>
+				<div class="col-md-2"></div>
+			</div>
+		{% else %}
+			<h3>You are not authorized to see this page {{ request.user.username }}</h3>
+		{% endif %}
+	</div>
+{% endblock %}

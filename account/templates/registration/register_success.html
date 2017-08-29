@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+	success
+{% endblock %}
+
+{% block content %}
+	<div class="container">
+		<div class="row text-center">
+			<div class="col-md-12">
+				<h1>Success!!!</h1>
+			</div>
+		</div>
+		<div class="row text-center">
+			<div class="col-md-12">
+				<h3>You have successfully signed up. You can now login <a href="{% url "account:login" %}">here</a>.</h3>
+			</div>
+		</div>
+	</div>
+{% endblock %}

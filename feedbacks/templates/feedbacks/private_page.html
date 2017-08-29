@@ -20,6 +20,8 @@
 			<div class="col-md-4">
 				{% if request.user.profile.display_picture %}
 					<img src="{{ request.user.profile.display_picture.url }}" class="img-responsive img-rounded"><br>
+				{% else %}
+					<img src="{% static "user.png" %}" class="img-responsive img-rounded"><br>
 				{% endif %}
 			</div>
 			<div class="col-md-4"></div>
