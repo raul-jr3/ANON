@@ -1,6 +1,6 @@
 # ANON
 
-### a site to create dedicated user pages which can be share with other and people and receive feedbacks
+### a site to create dedicated user pages which can be shared with other people and receive feedbacks
 ### in order to write to a person, a registered account is needed.
 ### the responder can remain anonymous or can reveal identity.
 
